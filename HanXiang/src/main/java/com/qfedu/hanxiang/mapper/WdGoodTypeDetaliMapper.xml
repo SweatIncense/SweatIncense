@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qfedu.hanxiang.mapper.WdGoodTypeDetaliMapper" >
+  <resultMap id="BaseResultMap" type="com.qfedu.hanxiang.pojo.WdGoodTypeDetali" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="gtdname" property="gtdname" jdbcType="VARCHAR" />
+    <result column="gtid" property="gtid" jdbcType="INTEGER" />
+    <result column="flag" property="flag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, gtdname, gtid, flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_wdgoodtypedetali
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_wdgoodtypedetali
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.hanxiang.pojo.WdGoodTypeDetali" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_wdgoodtypedetali (gtdname, gtid, flag
+      )
+    values (#{gtdname,jdbcType=VARCHAR}, #{gtid,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.hanxiang.pojo.WdGoodTypeDetali" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_wdgoodtypedetali
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gtdname != null" >
+        gtdname,
+      </if>
+      <if test="gtid != null" >
+        gtid,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gtdname != null" >
+        #{gtdname,jdbcType=VARCHAR},
+      </if>
+      <if test="gtid != null" >
+        #{gtid,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.hanxiang.pojo.WdGoodTypeDetali" >
+    update t_wdgoodtypedetali
+    <set >
+      <if test="gtdname != null" >
+        gtdname = #{gtdname,jdbcType=VARCHAR},
+      </if>
+      <if test="gtid != null" >
+        gtid = #{gtid,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.hanxiang.pojo.WdGoodTypeDetali" >
+    update t_wdgoodtypedetali
+    set gtdname = #{gtdname,jdbcType=VARCHAR},
+      gtid = #{gtid,jdbcType=INTEGER},
+      flag = #{flag,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectAll" resultType="list">
+    SELECT ID,GTDNAME FROM t_wdgoodtypedetali WHERE GTID = #{id} AND FLAG = 1
+  </select>
+</mapper>

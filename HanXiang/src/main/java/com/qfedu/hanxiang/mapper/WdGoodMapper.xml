@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qfedu.hanxiang.mapper.WdGoodMapper" >
+  <resultMap id="BaseResultMap" type="com.qfedu.hanxiang.pojo.WdGood" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="goodname" property="goodname" jdbcType="VARCHAR" />
+    <result column="goodno" property="goodno" jdbcType="VARCHAR" />
+    <result column="pubtime" property="pubtime" jdbcType="DATE" />
+    <result column="tagprice" property="tagprice" jdbcType="INTEGER" />
+    <result column="descible" property="descible" jdbcType="VARCHAR" />
+    <result column="discount" property="discount" jdbcType="DOUBLE" />
+    <result column="color" property="color" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="stid" property="stid" jdbcType="INTEGER" />
+    <result column="bid" property="bid" jdbcType="INTEGER" />
+    <result column="gsid" property="gsid" jdbcType="INTEGER" />
+    <result column="gtid" property="gtid" jdbcType="INTEGER" />
+    <result column="gtdid" property="gtdid" jdbcType="INTEGER" />
+    <result column="flag" property="flag" jdbcType="INTEGER" />
+    <result column="img" property="img" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, goodname, goodno, pubtime, tagprice, descible, discount, color, sex, stid, bid, 
+    gsid, gtid, gtdid, flag, img
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_wdgood
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_wdgood
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.hanxiang.pojo.WdGood" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_wdgood (goodname, goodno, pubtime, 
+      tagprice, descible, discount, 
+      color, sex, stid, bid, 
+      gsid, gtid, gtdid, 
+      flag, img)
+    values (#{goodname,jdbcType=VARCHAR}, #{goodno,jdbcType=VARCHAR}, #{pubtime,jdbcType=DATE}, 
+      #{tagprice,jdbcType=INTEGER}, #{descible,jdbcType=VARCHAR}, #{discount,jdbcType=DOUBLE}, 
+      #{color,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{stid,jdbcType=INTEGER}, #{bid,jdbcType=INTEGER}, 
+      #{gsid,jdbcType=INTEGER}, #{gtid,jdbcType=INTEGER}, #{gtdid,jdbcType=INTEGER}, 
+      #{flag,jdbcType=INTEGER}, #{img,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.hanxiang.pojo.WdGood" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_wdgood
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodname != null" >
+        goodname,
+      </if>
+      <if test="goodno != null" >
+        goodno,
+      </if>
+      <if test="pubtime != null" >
+        pubtime,
+      </if>
+      <if test="tagprice != null" >
+        tagprice,
+      </if>
+      <if test="descible != null" >
+        descible,
+      </if>
+      <if test="discount != null" >
+        discount,
+      </if>
+      <if test="color != null" >
+        color,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="stid != null" >
+        stid,
+      </if>
+      <if test="bid != null" >
+        bid,
+      </if>
+      <if test="gsid != null" >
+        gsid,
+      </if>
+      <if test="gtid != null" >
+        gtid,
+      </if>
+      <if test="gtdid != null" >
+        gtdid,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="img != null" >
+        img,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodname != null" >
+        #{goodname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodno != null" >
+        #{goodno,jdbcType=VARCHAR},
+      </if>
+      <if test="pubtime != null" >
+        #{pubtime,jdbcType=DATE},
+      </if>
+      <if test="tagprice != null" >
+        #{tagprice,jdbcType=INTEGER},
+      </if>
+      <if test="descible != null" >
+        #{descible,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=DOUBLE},
+      </if>
+      <if test="color != null" >
+        #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="stid != null" >
+        #{stid,jdbcType=INTEGER},
+      </if>
+      <if test="bid != null" >
+        #{bid,jdbcType=INTEGER},
+      </if>
+      <if test="gsid != null" >
+        #{gsid,jdbcType=INTEGER},
+      </if>
+      <if test="gtid != null" >
+        #{gtid,jdbcType=INTEGER},
+      </if>
+      <if test="gtdid != null" >
+        #{gtdid,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="img != null" >
+        #{img,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.hanxiang.pojo.WdGood" >
+    update t_wdgood
+    <set >
+      <if test="goodname != null" >
+        goodname = #{goodname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodno != null" >
+        goodno = #{goodno,jdbcType=VARCHAR},
+      </if>
+      <if test="pubtime != null" >
+        pubtime = #{pubtime,jdbcType=DATE},
+      </if>
+      <if test="tagprice != null" >
+        tagprice = #{tagprice,jdbcType=INTEGER},
+      </if>
+      <if test="descible != null" >
+        descible = #{descible,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null" >
+        discount = #{discount,jdbcType=DOUBLE},
+      </if>
+      <if test="color != null" >
+        color = #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="stid != null" >
+        stid = #{stid,jdbcType=INTEGER},
+      </if>
+      <if test="bid != null" >
+        bid = #{bid,jdbcType=INTEGER},
+      </if>
+      <if test="gsid != null" >
+        gsid = #{gsid,jdbcType=INTEGER},
+      </if>
+      <if test="gtid != null" >
+        gtid = #{gtid,jdbcType=INTEGER},
+      </if>
+      <if test="gtdid != null" >
+        gtdid = #{gtdid,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="img != null" >
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.hanxiang.pojo.WdGood" >
+    update t_wdgood
+    set goodname = #{goodname,jdbcType=VARCHAR},
+      goodno = #{goodno,jdbcType=VARCHAR},
+      pubtime = #{pubtime,jdbcType=DATE},
+      tagprice = #{tagprice,jdbcType=INTEGER},
+      descible = #{descible,jdbcType=VARCHAR},
+      discount = #{discount,jdbcType=DOUBLE},
+      color = #{color,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      stid = #{stid,jdbcType=INTEGER},
+      bid = #{bid,jdbcType=INTEGER},
+      gsid = #{gsid,jdbcType=INTEGER},
+      gtid = #{gtid,jdbcType=INTEGER},
+      gtdid = #{gtdid,jdbcType=INTEGER},
+      flag = #{flag,jdbcType=INTEGER},
+      img = #{img,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
