@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.hanxiang.mapper.GoodTypeMapper">
+  <resultMap id="BaseResultMap" type="com.qfedu.hanxiang.pojo.GoodType">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="gtname" jdbcType="VARCHAR" property="gtname" />
+    <result column="suitable" jdbcType="VARCHAR" property="suitable" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, gtname, suitable, flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_goodtype
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_goodtype
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.hanxiang.pojo.GoodType">
+    insert into t_goodtype ( gtname, suitable,
+      flag)
+    values (#{gtname,jdbcType=VARCHAR}, #{suitable,jdbcType=VARCHAR},
+      1)
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.hanxiang.pojo.GoodType">
+    insert into t_goodtype
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gtname != null">
+        gtname,
+      </if>
+      <if test="suitable != null">
+        suitable,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="gtname != null">
+        #{gtname,jdbcType=VARCHAR},
+      </if>
+      <if test="suitable != null">
+        #{suitable,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.hanxiang.pojo.GoodType">
+    update t_goodtype
+    <set>
+      <if test="gtname != null">
+        gtname = #{gtname,jdbcType=VARCHAR},
+      </if>
+      <if test="suitable != null">
+        suitable = #{suitable,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.hanxiang.pojo.GoodType">
+    update t_goodtype
+    set gtname = #{gtname,jdbcType=VARCHAR},
+      suitable = #{suitable,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_goodtype
+  </select>
+</mapper>

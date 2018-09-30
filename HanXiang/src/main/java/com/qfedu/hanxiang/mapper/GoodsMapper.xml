@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qfedu.hanxiang.mapper.GoodsMapper">
+  <resultMap id="BaseResultMap" type="com.qfedu.hanxiang.pojo.Goods">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="goodname" jdbcType="VARCHAR" property="goodname" />
+    <result column="goodno" jdbcType="VARCHAR" property="goodno" />
+    <result column="pubtime" jdbcType="DATE" property="pubtime" />
+    <result column="tagprice" jdbcType="INTEGER" property="tagprice" />
+    <result column="descible" jdbcType="VARCHAR" property="descible" />
+    <result column="discount" jdbcType="DOUBLE" property="discount" />
+    <result column="color" jdbcType="VARCHAR" property="color" />
+    <result column="sportitem" jdbcType="VARCHAR" property="sportitem" />
+    <result column="brand" jdbcType="VARCHAR" property="brand" />
+    <result column="goodsize" jdbcType="VARCHAR" property="goodsize" />
+    <result column="goodtype" jdbcType="VARCHAR" property="goodtype" />
+    <result column="goodtypedetail" jdbcType="VARCHAR" property="goodtypedetail" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="pic" jdbcType="VARCHAR" property="pic" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, goodname, goodno, pubtime, tagprice, descible, discount, color, sportitem, brand, 
+    goodsize, goodtype, goodtypedetail, flag, pic, comment
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qfedu.hanxiang.pojo.Goods">
+    insert into t_goods (goodname, goodno,
+      pubtime, tagprice, descible, 
+      discount, color, sportitem, 
+      brand, goodsize, goodtype, 
+      goodtypedetail, flag, pic, 
+      comment)
+    values ( #{goodname,jdbcType=VARCHAR}, #{goodno,jdbcType=VARCHAR},
+      #{pubtime,jdbcType=DATE}, #{tagprice,jdbcType=INTEGER}, #{descible,jdbcType=VARCHAR}, 
+      #{discount,jdbcType=DOUBLE}, #{color,jdbcType=VARCHAR}, #{sportitem,jdbcType=VARCHAR}, 
+      #{brand,jdbcType=VARCHAR}, #{goodsize,jdbcType=VARCHAR}, #{goodtype,jdbcType=VARCHAR}, 
+      #{goodtypedetail,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER}, #{pic,jdbcType=VARCHAR}, 
+      #{comment,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qfedu.hanxiang.pojo.Goods">
+    insert into t_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="goodname != null">
+        goodname,
+      </if>
+      <if test="goodno != null">
+        goodno,
+      </if>
+      <if test="pubtime != null">
+        pubtime,
+      </if>
+      <if test="tagprice != null">
+        tagprice,
+      </if>
+      <if test="descible != null">
+        descible,
+      </if>
+      <if test="discount != null">
+        discount,
+      </if>
+      <if test="color != null">
+        color,
+      </if>
+      <if test="sportitem != null">
+        sportitem,
+      </if>
+      <if test="brand != null">
+        brand,
+      </if>
+      <if test="goodsize != null">
+        goodsize,
+      </if>
+      <if test="goodtype != null">
+        goodtype,
+      </if>
+      <if test="goodtypedetail != null">
+        goodtypedetail,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="pic != null">
+        pic,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goodname != null">
+        #{goodname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodno != null">
+        #{goodno,jdbcType=VARCHAR},
+      </if>
+      <if test="pubtime != null">
+        #{pubtime,jdbcType=DATE},
+      </if>
+      <if test="tagprice != null">
+        #{tagprice,jdbcType=INTEGER},
+      </if>
+      <if test="descible != null">
+        #{descible,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        #{discount,jdbcType=DOUBLE},
+      </if>
+      <if test="color != null">
+        #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="sportitem != null">
+        #{sportitem,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsize != null">
+        #{goodsize,jdbcType=VARCHAR},
+      </if>
+      <if test="goodtype != null">
+        #{goodtype,jdbcType=VARCHAR},
+      </if>
+      <if test="goodtypedetail != null">
+        #{goodtypedetail,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="pic != null">
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.hanxiang.pojo.Goods">
+    update t_goods
+    <set>
+      <if test="goodname != null">
+        goodname = #{goodname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodno != null">
+        goodno = #{goodno,jdbcType=VARCHAR},
+      </if>
+      <if test="pubtime != null">
+        pubtime = #{pubtime,jdbcType=DATE},
+      </if>
+      <if test="tagprice != null">
+        tagprice = #{tagprice,jdbcType=INTEGER},
+      </if>
+      <if test="descible != null">
+        descible = #{descible,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        discount = #{discount,jdbcType=DOUBLE},
+      </if>
+      <if test="color != null">
+        color = #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="sportitem != null">
+        sportitem = #{sportitem,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsize != null">
+        goodsize = #{goodsize,jdbcType=VARCHAR},
+      </if>
+      <if test="goodtype != null">
+        goodtype = #{goodtype,jdbcType=VARCHAR},
+      </if>
+      <if test="goodtypedetail != null">
+        goodtypedetail = #{goodtypedetail,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="pic != null">
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qfedu.hanxiang.pojo.Goods">
+    update t_goods
+    set goodname = #{goodname,jdbcType=VARCHAR},
+      goodno = #{goodno,jdbcType=VARCHAR},
+      pubtime = #{pubtime,jdbcType=DATE},
+      tagprice = #{tagprice,jdbcType=INTEGER},
+      descible = #{descible,jdbcType=VARCHAR},
+      discount = #{discount,jdbcType=DOUBLE},
+      color = #{color,jdbcType=VARCHAR},
+      sportitem = #{sportitem,jdbcType=VARCHAR},
+      brand = #{brand,jdbcType=VARCHAR},
+      goodsize = #{goodsize,jdbcType=VARCHAR},
+      goodtype = #{goodtype,jdbcType=VARCHAR},
+      goodtypedetail = #{goodtypedetail,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=INTEGER},
+      pic = #{pic,jdbcType=VARCHAR},
+      comment = #{comment,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByChioce" resultMap="BaseResultMap">
+    Select
+    <include refid="Base_Column_List" />
+    <where>
+
+      <!-- 判断list是否为空并且size>0,这样才使用age进行条件判断 -->
+      <if test="list!=null and list.size()>0">
+        goodtypedetail in
+        <foreach collection="list" item=" goodtypedetail" separator="," open="("
+                 close=")">
+          #{ goodtypedetail}
+        </foreach>
+      </if>
+      <if test="list!=null and list.size()>0">
+        goodsize in
+        <foreach collection="list" item="goodsize" separator="," open="("
+                 close=")">
+          #{goodsize}
+        </foreach>
+      </if>
+      <if test="list!=null and list.size()>0">
+        sportitem in
+        <foreach collection="list" item="sportitem" separator="," open="("
+                 close=")">
+          #{sportitem}
+        </foreach>
+      </if>
+      <if test="list!=null and list.size()>0">
+        brand in
+        <foreach collection="list" item="brand" separator="," open="("
+                 close=")">
+          #{brand}
+        </foreach>
+      </if>
+      <if test="tagprice!=null">
+        tagprice between #{tagprice}  and #{tagprice}
+      </if>
+
+
+
+
+      <!-- <if test="id !=0"> or id=#{id} </if> <if test="name!=null"> or name=#{name}
+          </if> -->
+    </where>
+
+  </select>
+</mapper>
